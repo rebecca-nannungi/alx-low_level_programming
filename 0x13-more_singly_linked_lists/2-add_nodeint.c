@@ -1,29 +1,28 @@
 #include "lists.h"
+#include <string.h>
 
 /**
- * add_nodeint- add node at start
- * @head: pointer to pointer to head
- * @n: integer to add
- * Return: address of new element
- */
-
+ * add_nodeint - add a new node at the beginning of listint_t list
+ * @head: address of head of list
+ * @n: int to add to new node
+ * Return: pointer to new node
+ **/
 listint_t *add_nodeint(listint_t **head, const int n)
 {
 	listint_t *new;
 
-	new = malloc(sizeof(listint_t));
-	if (!new)
+	if (head == NULL)
 		return (NULL);
-	if ((*head) == NULL)
-	{
-		new->next = NULL;
-		new->n = n;
-		(*head) = new;
-		return (new);
-	}
+
+	new = malloc(sizeof(listint_t));
+
+	if (new == NULL)
+		return (NULL);
+
 	new->n = n;
-	new->next = (*head);
-	(*head) = new;
+	new->next = *head;
+
+	*head = new;
 	return (new);
 }
 
